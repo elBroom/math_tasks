@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_summernote',
+
     # custom packets
     'tasks',
 ]
@@ -125,3 +127,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = ''
+MEDIA_ROOT = BASE_DIR+MEDIA_URL
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+SUMMERNOTE_CONFIG = {
+    'width': '100%',
+    'height': '500',
+    'prettifyHtml': False,
+
+    # Set common css/js media files
+    'external_css': (
+        '//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css',
+        '//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css',
+    ),
+    'external_js': (
+        '//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js',
+        '//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js',
+        '//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js',
+    ),
+    'codemirror': {
+        'theme': 'monokai',
+    },
+
+}
