@@ -14,8 +14,10 @@ class TimeMixin(models.Model):
 
 class Tournament(TimeMixin):
     title = models.CharField(max_length=200)
+    description = models.TextField(null=True)
     start_time = models.DateTimeField(null=True)
     end_time = models.DateTimeField(null=True)
+    is_current = models.BooleanField(default=False)
 
     class Meta:
         index_together = (('start_time', 'end_time'),)

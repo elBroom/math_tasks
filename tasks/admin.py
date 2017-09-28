@@ -6,8 +6,23 @@ from .models import Task, Tournament, Round
 from .util import prepare_answer
 
 
-class TournamentAdmin(admin.ModelAdmin):
+class TournamentAdmin(SummernoteModelAdmin):
     readonly_fields = ('start_time', 'end_time')
+
+    @transaction.atomic
+    def save_model(self, request, obj, form, change):
+        # only one is current
+        try:
+            tournament = Tournament.objects.exclude(id=obj.id).filter(is_current=True).get()
+        except Tournament.DoesNotExist:
+            if not obj.is_current:
+                obj.is_current = True
+        else:
+            if obj.is_current:
+                tournament.is_current = False
+                tournament.save()
+
+        super(TournamentAdmin, self).save_model(request, obj, form, change)
 
 
 class RoundAdmin(admin.ModelAdmin):

@@ -1,0 +1,17 @@
+asn1crypto==0.23.0
+cffi==1.11.0
+cryptography==2.0.3
+Django==1.11.5
+django-redis==4.8.0
+django-summernote==0.8.8.2
+flake8==3.4.1
+idna==2.6
+mccabe==0.6.1
+psycopg2==2.7.3.1
+pycodestyle==2.3.1
+pycparser==2.18
+pyflakes==1.5.0
+pyOpenSSL==17.3.0
+pytz==2017.2
+redis==2.10.6
+six==1.11.0

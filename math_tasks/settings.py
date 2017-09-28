@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # external packets
     'django_summernote',
 
     # custom packets
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'math_tasks.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,6 +87,16 @@ DATABASES = {
         'PASSWORD': 'math_tasks',
         'HOST': 'localhost',
         'PORT': '',
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
     }
 }
 
@@ -147,8 +158,5 @@ SUMMERNOTE_CONFIG = {
         '//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js',
         '//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js',
     ),
-    'codemirror': {
-        'theme': 'monokai',
-    },
 
 }

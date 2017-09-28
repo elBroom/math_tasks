@@ -22,6 +22,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^', include('tasks.urls', namespace='tasks')),
 ]
 
 if settings.DEBUG:

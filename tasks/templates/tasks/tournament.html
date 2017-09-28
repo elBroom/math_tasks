@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    {{ tournament.description|safe|escape}}
+
+    <hr>
+    <ul>
+    {% for round in rounds %}
+        <li>{{round.start_time|date:"Y-m-d H:m"}} - {{round.start_time|date:"Y-m-d H:m"}} // {{round.title}}</li>
+    {% endfor %}
+    <ul>
+{% endblock %}
