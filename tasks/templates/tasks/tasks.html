@@ -1,0 +1,15 @@
+{% extends 'base_layout.html' %}
+{% load staticfiles %}
+
+{% block content %}
+  {% for task in tasks %}
+    <h3>{{ task.title }}</h3>
+    <p>{{ task.text|safe|escape }}</p>
+    <form action="/answer/{{ task.id }}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Check">
+    </form>
+    <hr>
+  {% endfor %}
+{% endblock %}
