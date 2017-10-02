@@ -1,2 +1,3 @@
 *.pyc
 media/*
+math_tasks/settings.py

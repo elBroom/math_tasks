@@ -6,8 +6,6 @@
 
 1. Python3.5
 1. Django 1.11
-1. rest_framework
-1. Celery 4.0 (брокер rabbitMQ)
 1. PostgreSQL
 
 ## Установка и запуск
@@ -33,16 +31,13 @@
     \q
 ```
 
-В settings.py изменить настройки БД:
-```python
-    DATABASES = {
-    ....
-        'NAME': 'database_name',
-        'USER': 'database_user',
-        'PASSWORD': 'database_password',
-    ....
-    }
+
+Cкопировать settings_tpl.py и изменить настройки:
+```sh
+    cp math_tasks/settings_tmp.py math_tasks/settings.py
+    vim math_tasks/settings.py
 ```
+
 
 Установить миграцию:
 ```bash
