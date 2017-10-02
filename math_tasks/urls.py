@@ -22,6 +22,9 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^', include('news.urls', namespace='news')),
     url(r'^', include('tasks.urls', namespace='tasks')),
 ]
 

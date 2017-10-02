@@ -1,0 +1,10 @@
+{% extends 'base_layout.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<ul>
+  {% for item in news %}
+    <li><a href="/news/{{ item.id }}/">{{ item.title }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

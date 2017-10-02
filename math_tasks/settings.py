@@ -26,6 +26,7 @@ SECRET_KEY = '+ge93i$gyn*58b29um&)-822xn)6^3--!bmov(l@&nk)5ddr!i'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SITE_ID = 1
 
 
 # Application definition
@@ -37,12 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
 
     # external packets
     'django_summernote',
 
     # custom packets
     'tasks',
+    'news',
 ]
 
 MIDDLEWARE = [
@@ -160,3 +164,11 @@ SUMMERNOTE_CONFIG = {
     ),
 
 }
+
+ACCOUNT_ACTIVATION_DAYS = 3
+DEFAULT_FROM_EMAIL = 'noreply@elbroom.ru'
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST_USER = 'noreply@elbroom.ru'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT = 465

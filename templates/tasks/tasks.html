@@ -4,7 +4,7 @@
 {% block content %}
   {% for task in tasks %}
     <h3>{{ task.title }}</h3>
-    <p>{{ task.text|safe|escape }}</p>
+    {{ task.text|safe|escape }}
     <form action="/answer/{{ task.id }}" method="post">
         {% csrf_token %}
         {{ form }}

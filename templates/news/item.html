@@ -1,0 +1,6 @@
+{% extends 'base_layout.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {{ item.text|safe|escape }}
+{% endblock %}

@@ -13,7 +13,7 @@
         <tbody>
           {% for row in rating %}
               <tr>
-                <td>{{ loop.index }}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ row.user.username }}</td>
                 <td>{{ row.points }}</td>
               </tr>
