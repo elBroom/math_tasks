@@ -18,15 +18,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^', include('news.urls', namespace='news')),
     url(r'^', include('tasks.urls', namespace='tasks')),
+    url(r'^', include('django.contrib.flatpages.urls')),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

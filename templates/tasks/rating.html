@@ -1,13 +1,14 @@
 {% extends 'base_layout.html' %}
 {% load staticfiles %}
+{% load i18n %}
 
 {% block content %}
     <table class="table table-hover">
         <thead>
           <tr>
             <th>#</th>
-            <th>Username</th>
-            <th>Points</th>
+            <th>{% trans "Username" %}</th>
+            <th>{% trans "Points" %}</th>
           </tr>
         </thead>
         <tbody>

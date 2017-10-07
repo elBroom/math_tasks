@@ -1,14 +1,15 @@
 {% extends 'base_layout.html' %}
 {% load staticfiles %}
+{% load i18n %}
 
 {% block content %}
   {% for task in tasks %}
     <h3>{{ task.title }}</h3>
     {{ task.text|safe|escape }}
-    <form action="/answer/{{ task.id }}" method="post">
+    <form action="/answer/{{ task.id }}/" method="post">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Check">
+        <input type="submit" value="{% trans "Check" %}">
     </form>
     <hr>
   {% endfor %}

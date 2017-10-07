@@ -1,5 +1,5 @@
-{% load i18n %}
 {% load staticfiles %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{title}}</title>
+    <title>{% if flatpage.title %}{{ flatpage.title }}{% else %}{{ title }}{% endif %}</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
@@ -36,19 +36,23 @@
       <div class="container">
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">{{tour_title}}</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/faq">FAQ</a></li>
-            <li><a href="/rating">Rating</a></li>
-            <li><a href="/tasks">Tasks</a></li>
-            <li><a href="/accounts/logout">Logout</a></li>
+            <li><a href="/">{% trans "Home" %}</a></li>
+            <li><a href="/news/">{% trans "News" %}</a></li>
+            <li><a href="/faq/">{% trans "FAQ" %}</a></li>
+            <li><a href="/rating/">{% trans "Rating" %}</a></li>
+              {% if user.is_authenticated %}
+                <li><a href="/tasks/">{% trans "Tasks" %}</a></li>
+                <li><a href="/accounts/logout/">{% trans "Logout" %}</a></li>
+            {% else %}
+                <li><a href="/accounts/login/">{% trans "Login" %}</a></li>
+            {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-        <h1>{{ title }}</h1>
+        <h1>{% if flatpage.title %}{{ flatpage.title }}{% else %}{{ title }}{% endif %}</h1>
         {% block content %}
         {% endblock %}
     </div> <!-- /container -->
