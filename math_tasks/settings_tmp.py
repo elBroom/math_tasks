@@ -88,8 +88,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'math_tasks',
-        'USER': 'math_tasks',
-        'PASSWORD': 'math_tasks',
+        'USER': 'database_user',
+        'PASSWORD': 'database_password',
         'HOST': 'localhost',
         'PORT': '',
         'TEST': {

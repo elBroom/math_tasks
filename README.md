@@ -1,4 +1,6 @@
-# Тестовое задание 
+# Тестовое задание
+
+[![Build Status](https://travis-ci.com/elBroom/math_tasks.svg?token=cVo8HUojxrnVwNzUccZT&branch=master)](https://travis-ci.com/elBroom/math_tasks)
 
 Портал для проведения online турнира по решению математических задач
 
@@ -7,6 +9,7 @@
 1. Python3.5
 1. Django 1.11
 1. PostgreSQL
+1. Redis
 
 ## Установка и запуск
 

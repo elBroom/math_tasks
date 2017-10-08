@@ -1,0 +1,16 @@
+language: python
+python: "3.5"
+services:
+  - postgresql
+  - redis-server
+env:
+  - DJANGO=1.11 DB=postgres
+install:
+  - cp math_tasks/settings_tmp.py math_tasks/settings.py
+  - pip install -r requirements.txt
+  - pip install coveralls
+before_script:
+  - psql -c "create user database_user with password 'database_password';" -U postgres
+  - psql -c 'alter user database_user createdb;' -U postgres
+script:
+  - python manage.py test
