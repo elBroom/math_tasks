@@ -30,7 +30,7 @@ class Tournament(TimeMixin):
 
     @classmethod
     def get_current(cls):
-        return  cls.objects.filter(is_current=True).get()
+        return cls.objects.filter(is_current=True).get()
 
 
 class Round(TimeMixin):
@@ -112,3 +112,6 @@ class Rating(models.Model):
 
     class Meta:
         ordering = ('-points',)
+
+
+from .signals import *

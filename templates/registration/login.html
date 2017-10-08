@@ -11,5 +11,7 @@
   <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
+{% if not request.round.is_last %}
 <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+{% endif %}
 {% endblock %}

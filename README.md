@@ -28,6 +28,11 @@
     CREATE DATABASE database_name;
     CREATE USER database_user WITH PASSWORD 'database_password';
     GRANT ALL PRIVILEGES ON DATABASE database_name TO database_user;
+
+    # for test
+    CREATE DATABASE test_database_name;
+    GRANT ALL PRIVILEGES ON DATABASE test_database_name TO database_user;
+    ALTER DATABASE test_database_name OWNER TO database_user;
     \q
 ```
 

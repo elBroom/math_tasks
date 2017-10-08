@@ -17,13 +17,15 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.defaults import page_not_found
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
-    url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^password/', page_not_found, {'exception': Exception('Not Found')}),
+    url(r'^', include('registration.backends.hmac.urls')),
     url(r'^', include('news.urls', namespace='news')),
     url(r'^', include('tasks.urls', namespace='tasks')),
     url(r'^', include('django.contrib.flatpages.urls')),

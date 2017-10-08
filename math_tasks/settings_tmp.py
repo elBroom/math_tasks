@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'tasks.middleware.RoundMiddleware',
 ]
 
 ROOT_URLCONF = 'math_tasks.urls'
@@ -91,6 +92,9 @@ DATABASES = {
         'PASSWORD': 'math_tasks',
         'HOST': 'localhost',
         'PORT': '',
+        'TEST': {
+            'NAME': 'test_math_tasks',
+        },
     }
 }
 
@@ -178,3 +182,6 @@ EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_HOST_USER = 'noreply@elbroom.ru'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 465
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = LOGOUT_REDIRECT_URL = '/'

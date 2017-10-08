@@ -6,11 +6,13 @@
   {% for task in tasks %}
     <h3>{{ task.title }}</h3>
     {{ task.text|safe|escape }}
-    <form action="/answer/{{ task.id }}/" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="{% trans "Check" %}">
-    </form>
+    {% if can_answer %}
+        <form action="/answer/{{ task.id }}/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="{% trans "Check" %}">
+        </form>
+    {% endif %}
     <hr>
   {% endfor %}
 {% endblock %}

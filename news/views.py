@@ -3,7 +3,7 @@ from django.http import Http404
 
 from .models import Article
 
-# Create your views here.
+
 def list(request):
     try:
         news = Article.objects.filter(is_public=True).all()
@@ -16,6 +16,7 @@ def list(request):
             'news': news,
         }
     )
+
 
 def item(request, item_id):
     try:
