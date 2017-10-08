@@ -51,7 +51,12 @@ def tournament(request):
     )
 
 
+def can_answer(request):
+    return not request.user.is_staff or request.user.has_perm('tasks.can_answer')
+
+
 @require_http_methods(["POST"])
+@login_required()
 def answer(request, task_id):
     form = TaskForm(request.POST)
     if not form.is_valid():
@@ -64,7 +69,3 @@ def answer(request, task_id):
         value=form.data.get('answer')
     ).save()
     return redirect('/tasks/')
-
-
-def can_answer(request):
-    return not request.user.is_staff or request.user.has_perm('tasks.can_answer')
