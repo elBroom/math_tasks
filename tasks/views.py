@@ -18,7 +18,6 @@ def tasks(request):
     }
 
     if params['can_answer']:
-        params['form'] = TaskForm()
         answers = {}
         for answer in Answer.objects.filter(author=request.user.id).filter(task__in=params['tasks']):
             if answers.get(answer.task_id):

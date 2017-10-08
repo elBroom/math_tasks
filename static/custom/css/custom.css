@@ -5,3 +5,11 @@ body {
 p{
     text-align: justify;
 }
+.table.answers i.glyphicon.glyphicon-ok{
+    color: #1cce1c;
+    font-size: 20px;
+}
+.table.answers i.glyphicon.glyphicon-remove{
+    color: #f52727;
+    font-size: 20px;
+}

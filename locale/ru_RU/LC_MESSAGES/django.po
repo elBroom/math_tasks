@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 10:19+0000\n"
+"POT-Creation-Date: 2017-10-08 16:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Zarina <>, 2017\n"
 "Language-Team: Russian (https://www.transifex.com/mephi/teams/79367/ru_RU/)\n"
@@ -19,10 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-
-#: templates/base_layout.html:39
-msgid "Home"
-msgstr "Главная"
 
 #: templates/base_layout.html:40
 msgid "News"
@@ -74,11 +70,11 @@ msgstr "Активиция аккаунта"
 msgid "Log in"
 msgstr "Вход"
 
-#: templates/registration/login.html:14
+#: templates/registration/login.html:15
 msgid "Not member"
 msgstr "Не помню"
 
-#: templates/registration/login.html:14
+#: templates/registration/login.html:15
 msgid "Register"
 msgstr "Регистрация"
 
@@ -129,6 +125,13 @@ msgstr "Пользователь"
 msgid "Points"
 msgstr "Очки"
 
-#: templates/tasks/tasks.html:12
+#: templates/tasks/tasks.html:15
+msgid "Answer"
+msgstr "Ответить"
+
+#: templates/tasks/tasks.html:17
 msgid "Check"
 msgstr "Проверить"
+
+#~ msgid "Home"
+#~ msgstr "Главная"

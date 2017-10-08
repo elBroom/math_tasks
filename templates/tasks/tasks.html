@@ -1,6 +1,7 @@
 {% extends 'base_layout.html' %}
 {% load staticfiles %}
 {% load i18n %}
+{% load tasks_filters %}
 
 {% block content %}
   {% for task in tasks %}
@@ -9,9 +10,31 @@
     {% if can_answer %}
         <form action="/answer/{{ task.id }}/" method="post">
             {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="{% trans "Check" %}">
+            <div class="input-group">
+                <input type="text" name="answer" required="" maxlength="100" id="id_answer" class="form-control"
+                       placeholder="{% trans "Answer" %}">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        {% trans "Check" %}
+                    </button>
+                </div>
+            </div>
         </form>
+        {% with answers|get_item:task.id as answer_task %}
+        {% if answer_task %}
+            <table class="table table-hover answers">
+                <tbody>
+                    {% for answer in answer_task  %}
+                        <tr>
+                            <td>{{ answer.value }}</td>
+                            <td>{{ answer.created_at|date:"Y-m-d H:m" }}</td>
+                            <td><i class="glyphicon glyphicon-{% if answer.is_success %}ok{% else %}remove{% endif %}"></i></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        {% endwith %}
     {% endif %}
     <hr>
   {% endfor %}
