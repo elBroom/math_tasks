@@ -20,7 +20,7 @@ def list(request):
 
 def item(request, item_id):
     try:
-        item = Article.objects.filter(pk=item_id).get()
+        item = Article.objects.filter(pk=item_id).filter(is_public=True).get()
     except Article.DoesNotExist:
         raise Http404
 

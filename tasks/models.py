@@ -66,7 +66,7 @@ class Round(TimeMixin):
         for round in sorted(tournament.round_set.all(), key=lambda x: x.start_time):
             if round.start_time > now and round.end_time > now:
                 return round
-            if round.start_time >= now and round.end_time <= now:
+            if round.start_time <= now and round.end_time >= now:
                 return round
             if round.is_last:
                 return round
