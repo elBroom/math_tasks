@@ -28,7 +28,7 @@ class NewsApiTestCase(TestCase):
         user = User.objects.create_user(username='test', email='test@te.com', password='password', is_staff=True)
         self.article1 = Article.objects.create(
             title='Test1',
-            text = 'text1',
+            text='text1',
             author=user,
             is_public=True
         )

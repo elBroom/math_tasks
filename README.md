@@ -10,6 +10,7 @@
 1. Django 1.11
 1. PostgreSQL
 1. Redis
+1. Celery
 
 ## Установка и запуск
 
@@ -55,6 +56,12 @@ Cкопировать settings_tpl.py и изменить настройки:
 Создать супер пользователя:
 ```bash
     python manage.py createsuperuser
+```
+
+Запустить redis и celery:
+```bash
+    celery -A math_tasks beat -l info -S django
+    celery -A math_tasks worker -l info
 ```
 
 Запустить сервер:

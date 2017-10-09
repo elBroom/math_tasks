@@ -30,7 +30,7 @@ class TasksApiTestCase(TestCase):
         self.user2 = User.objects.create_user(username='test2', email='test@te.com', password=self.password2)
         self.task1 = Task.objects.create(
             title='Test1',
-            text = 'text1',
+            text='text1',
             creator=user,
             correct_answer='2.4',
         )
@@ -114,6 +114,10 @@ class UserApiTestCase(TestCase):
         )
 
     def test_register(self):
-        response = self.client.post('/register/',
-            {'username': 'test3', 'email': 'test@te.com', 'password1': 'register', 'password2': 'register'})
+        response = self.client.post('/register/', {
+            'username': 'test3',
+            'email': 'test@te.com',
+            'password1': 'register',
+            'password2': 'register'
+        })
         self.assertEqual(response.status_code, 403)
