@@ -99,11 +99,11 @@ DATABASES = {
 }
 
 CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient'
         },
     }
 }
@@ -148,6 +148,12 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Celery settings
+CELERY_BROKER_URL = CACHES['default']['LOCATION']
+CELERY_RESULT_BACKEND = CACHES['default']['LOCATION']
+CELERY_TIMEZONE = TIME_ZONE
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -185,3 +191,5 @@ EMAIL_PORT = 465
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = LOGOUT_REDIRECT_URL = '/'
+
+TASKS_FINAL_USERS_LIMIT = 20

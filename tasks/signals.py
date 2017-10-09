@@ -10,7 +10,7 @@ from .util import get_timeout
 
 @receiver(pre_save, sender=User)
 def registration_user(sender, instance, **kwargs):
-    if not instance.is_staff and Round.get_current().is_last:
+    if instance.pk is None and not instance.is_staff and Round.get_current().is_last:
         raise PermissionDenied
 
 

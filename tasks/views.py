@@ -6,6 +6,7 @@ from django.views.decorators.http import require_http_methods
 
 from .models import Answer, Task, Rating
 from .forms import TaskForm
+from .tasks import calculate_rating_task
 
 
 @login_required()
@@ -19,7 +20,7 @@ def tasks(request):
 
     if params['can_answer']:
         answers = {}
-        for answer in Answer.objects.filter(author=request.user.id).filter(task__in=params['tasks']):
+        for answer in Answer.objects.filter(author=request.user.id).filter(task__in=params['tasks']).order_by('id'):
             if answers.get(answer.task_id):
                 answers[answer.task_id].append(answer)
             else:
@@ -52,7 +53,7 @@ def tournament(request):
 
 
 def can_answer(request):
-    return not request.user.is_staff or request.user.has_perm('tasks.can_answer')
+    return (not request.user.is_staff) and request.round.is_last and request.user.has_perm('tasks.can_create_answer')
 
 
 @require_http_methods(["POST"])
@@ -68,4 +69,5 @@ def answer(request, task_id):
         task=task,
         value=form.data.get('answer')
     ).save()
+    calculate_rating_task.delay(round_id=request.round.id)
     return redirect('/tasks/')

@@ -77,7 +77,7 @@ class Task(TimeMixin):
     title = models.CharField(max_length=200)
     text = models.TextField()
     correct_answer = models.CharField(max_length=20)
-    rounds = models.ManyToManyField(Round)
+    rounds = models.ManyToManyField(Round, related_name="tasks")
 
     class Meta:
         ordering = ('id',)
@@ -94,7 +94,9 @@ class Answer(TimeMixin):
     is_success = models.NullBooleanField()
 
     class Meta:
-        ordering = ('id',)
+        permissions = (
+            ("can_create_answer", "Can create answer"),
+        )
 
     def __str__(self):
         return self.value
@@ -108,10 +110,10 @@ class Answer(TimeMixin):
 class Rating(models.Model):
     user = models.ForeignKey('auth.User')
     round = models.ForeignKey(Round)
-    points = models.DecimalField(max_digits=5, decimal_places=2)
+    points = models.IntegerField()
 
     class Meta:
-        ordering = ('-points',)
+        ordering = ('points',)
 
 
 from .signals import *

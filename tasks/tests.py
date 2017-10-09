@@ -2,6 +2,7 @@ from django.utils import timezone
 
 from django.contrib.auth.models import User
 from django.test import TestCase
+from django.test.utils import override_settings
 
 from math_tasks import settings
 from .models import Answer, Task, Tournament, Round
@@ -75,6 +76,9 @@ class TasksApiTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/tasks.html')
 
+    @override_settings(CELERY_EAGER_PROPAGATES_EXCEPTIONS=True,
+                       CELERY_ALWAYS_EAGER=True,
+                       BROKER_BACKEND='memory')
     def test_with_login_answer(self):
         self.client.login(username=self.user2.username, password=self.password2)
 
@@ -112,6 +116,19 @@ class UserApiTestCase(TestCase):
             start_time=start_time,
             end_time=end_time,
         )
+        self.password = 'password2'
+        self.user = User.objects.create_user(
+            username='test', email='test@te.com', password=self.password, is_staff=True)
+
+    def test_login(self):
+        self.user.is_staff = False
+        self.user.save()
+        response = self.client.post(settings.LOGIN_URL, {
+            'username': self.user.username,
+            'password': self.password
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, settings.LOGIN_REDIRECT_URL)
 
     def test_register(self):
         response = self.client.post('/register/', {
