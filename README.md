@@ -11,6 +11,7 @@
 1. PostgreSQL
 1. Redis
 1. Celery
+1. Docker
 
 ## Установка и запуск
 
@@ -60,7 +61,6 @@ Cкопировать settings_tpl.py и изменить настройки:
 
 Запустить redis и celery:
 ```bash
-    celery -A math_tasks beat -l info -S django
     celery -A math_tasks worker -l info
 ```
 
