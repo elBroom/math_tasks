@@ -38,6 +38,7 @@ pyflakes==1.5.0
 Pygments==2.2.0
 pyOpenSSL==17.3.0
 pytz==2017.2
+raven==6.3.0
 redis==2.10.6
 requests==2.18.4
 simplegeneric==0.8.1

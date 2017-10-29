@@ -16,9 +16,11 @@ def registration_user(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Tournament)
 def cache_current_tournament(sender, instance, created, **kwargs):
-    cache.set('current_tournament', Tournament.get_current(), get_timeout(instance.end_time))
+    if instance.end_time:
+        cache.set('current_tournament', Tournament.get_current(), get_timeout(instance.end_time))
 
 
 @receiver(post_save, sender=Round)
 def cache_current_round(sender, instance, **kwargs):
-    cache.set('current_round', Round.get_current(), get_timeout(instance.end_time))
+    if instance.end_time:
+        cache.set('current_round', Round.get_current(), get_timeout(instance.end_time))

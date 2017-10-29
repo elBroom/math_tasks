@@ -10,7 +10,7 @@ class RoundMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
-        if not request.path.startswith('/admin/'):
+        if not request.path.startswith('/admin/') and not request.path.startswith('/summernote/'):
             request.tournament = get_current_tournament()
             request.round = get_current_round()
         return self.get_response(request)
