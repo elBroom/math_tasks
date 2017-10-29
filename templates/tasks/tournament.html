@@ -8,7 +8,7 @@
     <hr>
     <ul>
     {% for round in rounds %}
-        <li>{{round.start_time|date:"Y-m-d H:m"}} - {{round.start_time|date:"Y-m-d H:m"}} // {{round.title}}</li>
+        <li>{{round.start_time|date:"Y-m-d H:i"}} - {{round.end_time|date:"Y-m-d H:i"}} // {{round.title}}</li>
     {% endfor %}
     </ul>
 {% endblock %}

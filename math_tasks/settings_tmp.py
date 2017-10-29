@@ -140,7 +140,7 @@ LANGUAGES = (
 
 LANGUAGE_CODE = 'ru_RU' 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 

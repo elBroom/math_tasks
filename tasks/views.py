@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -11,14 +13,15 @@ from .tasks import calculate_rating_task
 
 @login_required()
 def tasks(request):
+    now = timezone.now()
     params = {
         'title': 'Tasks',
         'menu': 'tasks',
         'can_answer': can_answer(request),
-        'tasks': Task.objects.filter(rounds=request.round)
+        'tasks': Task.objects.filter(rounds=request.round) if request.round.start_time <= now else []
     }
 
-    if params['can_answer']:
+    if params['tasks'] and params['can_answer']:
         answers = {}
         for answer in Answer.objects.filter(author=request.user.id).filter(task__in=params['tasks']).order_by('id'):
             if answers.get(answer.task_id):
@@ -53,7 +56,8 @@ def tournament(request):
 
 
 def can_answer(request):
-    return (not request.user.is_staff) and request.round.is_last and request.user.has_perm('tasks.can_create_answer')
+    return not request.user.is_staff and \
+           (not request.round.is_last or request.round.is_last and request.user.has_perm('tasks.can_create_answer'))
 
 
 @require_http_methods(["POST"])

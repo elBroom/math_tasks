@@ -27,7 +27,7 @@
                     {% for answer in answer_task  %}
                         <tr>
                             <td>{{ answer.value }}</td>
-                            <td>{{ answer.created_at|date:"Y-m-d H:m" }}</td>
+                            <td>{{ answer.created_at|date:"Y-m-d H:i" }}</td>
                             <td><i class="glyphicon glyphicon-{% if answer.is_success %}ok{% else %}remove{% endif %}"></i></td>
                         </tr>
                     {% endfor %}
