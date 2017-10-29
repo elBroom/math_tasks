@@ -10,8 +10,9 @@ class RoundMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
-        request.tournament = get_current_tournament()
-        request.round = get_current_round()
+        if not request.path.startswith('/admin/'):
+            request.tournament = get_current_tournament()
+            request.round = get_current_round()
         return self.get_response(request)
 
 
@@ -30,7 +31,10 @@ def get_current_tournament():
 def get_current_round():
     data = cache.get('current_round')
     if not data:
-        data = Round.get_current()
+        try:
+            data = Round.get_current()
+        except (Round.DoesNotExist, Tournament.DoesNotExist):
+            raise Http404
         timeout = get_timeout(data.end_time) if get_timeout(data.end_time) > 0 else 60
         cache.set('current_round', data, timeout)
     return data

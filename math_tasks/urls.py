@@ -23,7 +23,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^summernote/', include('django_summernote.urls')),
-    url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^password/', page_not_found, {'exception': Exception('Not Found')}),
     url(r'^', include('registration.backends.hmac.urls')),
     url(r'^', include('news.urls', namespace='news')),
