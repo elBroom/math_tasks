@@ -16,7 +16,7 @@ django-celery==3.2.1
 django-celery-beat==1.0.1
 django-celery-results==1.0.1
 django-redis==4.8.0
-django-registration==2.3
+django-registration==3.1.2
 django-summernote==0.8.8.2
 docopt==0.6.2
 flake8==3.4.1
