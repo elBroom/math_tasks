@@ -14,7 +14,7 @@ decorator==4.1.2
 Django==1.11.5
 django-celery==3.2.1
 django-celery-beat==1.0.1
-django-celery-results==1.0.1
+django-celery-results==2.4.0
 django-redis==4.8.0
 django-registration==2.3
 django-summernote==0.8.8.2
